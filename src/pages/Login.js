@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import Context from '../context/Context';
 import apiRequest from '../utils/axiosapi';
 
 function Login() {
 
   const [ email, setEmail ] = useState('debb0833-d348-4258-b58f-0e939adcbb6a@profranchising.com.br');
   const [ password, setPassword ] = useState('958a2198-ed46-44bc-b05d-0f66691489f0');
-  const [ authorization, setAuthorization ] = useState();
+
+  const { setAuthorization } = useContext(Context);
 
   const handleClick = (event) => {
     event.prevendDefault;
@@ -13,10 +15,7 @@ function Login() {
       password: password,
       username: email,
     };
-    // const body = JSON.stringify(auth);
-    // console.log(body);
     apiRequest.post('/auth/login', auth).then((res) => setAuthorization(res.headers.authorization));
-    console.log(authorization);
   };
 
   return (
