@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={ <Pages.Login /> } />
         <Route exact path='/home' element={ <Pages.Home /> } />
+        <Route exact path='/product/new' element={ <Pages.NewProduct />} />
       </Routes>
     </Provider>
   );
