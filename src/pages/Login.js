@@ -15,7 +15,7 @@ function Login() {
   } = useContext(Context);
 
   const handleClick = async (event) => {
-    event.prevendDefault;
+    event.preventDefault;
     const auth = {
       password: password,
       username: email,
