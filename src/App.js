@@ -3,13 +3,14 @@ import { Route } from 'react-router-dom';
 import { Routes } from 'react-router';
 import './App.css';
 import Provider from './context/Provider';
-import Login from './pages/Login';
+import Pages from './pages/index';
 
 function App() {
   return (
     <Provider>
       <Routes>
-        <Route exact path='/' element={ <Login /> } />
+        <Route exact path='/' element={ <Pages.Login /> } />
+        <Route exact path='/home' element={ <Pages.Home /> } />
       </Routes>
     </Provider>
   );
