@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import Context from './Context';
 
-function Provider(Children) {
+function Provider({ children }) {
   const [ authorization, setAuthorization ] = useState();
 
   const providerValue = {
@@ -12,15 +12,16 @@ function Provider(Children) {
 
   return (
     <Context.Provider value={ providerValue } >
-      { Children }
+      { children }
     </Context.Provider>
   );
 }
 
 Provider.propTypes = {
-  children: propTypes.shape({
-    typeof: 'Symbol(react.element)',
-  }).isRequired,
+  children: propTypes.oneOfType([
+    propTypes.func,
+    propTypes.object,
+  ]).isRequired,
 };
 
 export default Provider;
