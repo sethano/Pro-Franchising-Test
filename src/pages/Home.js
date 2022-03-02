@@ -5,6 +5,7 @@ import apiRequest from '../utils/axiosapi';
 function Home() {
   const { authorization } = useContext;
   const [ productList, setProductList ] = useState();
+  const [ loading, setLoading ] = useState(true);
   const navigate = useNavigate();
 
   useEffect(async () => {
@@ -15,24 +16,47 @@ function Home() {
           authorization: token,
         }
       });
-      setProductList(res);
+      setProductList(res.data.content);
     } else {
       const res = await apiRequest.get('/product/list?page=1&size=10', {
         headers: {
           authorization: authorization,
         }
       });
-      setProductList(res);
+      setProductList(res.data.content);
     }
   }, []);
 
   useEffect(() => {
-    if(productList) {
-      navigate('/product/new');
-    }
+    setTimeout(() => {
+      redirect();
+      console.log(productList);
+    }, 3000);
   }, [productList]);
+
+
+  const redirect = () => {
+    setLoading(true);
+    productList ? setLoading(false) : navigate('/product/new');
+  };
+
+  useEffect(()=>{console.log(productList);},[]);
+
   return (
-    <p> hello! </p>
+    <div>
+      { loading ?
+        <p> Loading </p> :
+        productList.map((product)=>{
+          return(
+            <div id={product.id} name={product.name} key={product.id}>
+              <image src={product.image} />
+              <span> { product.name } </span>
+            </div>
+          );
+        })
+      }
+      <p>sdfhkadjs</p>
+    </div>
   );
 }
 
