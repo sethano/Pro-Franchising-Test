@@ -28,10 +28,12 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       redirect();
-      console.log(productList);
-    }, 3000);
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [productList]);
 
 
@@ -40,7 +42,19 @@ function Home() {
     productList ? setLoading(false) : navigate('/product/new');
   };
 
-  useEffect(()=>{console.log(productList);},[]);
+  const handleDelete = async (id) => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    try {
+      await apiRequest.delete(`/product/delete/${id}`, {
+        headers: {
+          Authorization: token,
+        }
+      });
+      alert('deleted');
+    } catch (error) {
+      alert(error);
+    } 
+  };
 
   return (
     <div>
@@ -49,8 +63,10 @@ function Home() {
         productList.map((product)=>{
           return(
             <div id={product.id} name={product.name} key={product.id}>
-              <image src={product.image} />
+              <img src={product.image} />
               <span> { product.name } </span>
+              <button type='button' onClick={() => navigate(`/product/edit/${product.id}`)}>Edit item</button>
+              <button type='button' onClick={() => handleDelete(product.id) }>Delete item</button>
             </div>
           );
         })

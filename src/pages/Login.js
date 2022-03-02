@@ -33,7 +33,6 @@ function Login() {
   };
 
   useEffect(() => {
-    console.log(authorization);
     if(authorization && login) {
       navigate('/home');
     }

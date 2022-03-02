@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { IngredientForm, ProductForm } from '../components/index';
 import Context from '../context/Context';
 
@@ -9,6 +10,7 @@ function NewProduct() {
   const {
     image, name, ingredients, price
   } = useContext(Context);
+  const navigate = useNavigate();
 
 
   const handleClickNew = async (event) => {
@@ -21,8 +23,6 @@ function NewProduct() {
       price: price,
     };
     const token = JSON.parse(localStorage.getItem('token'));
-    console.log(obj);
-    console.log(token);
     try {
       await apiRequest.post('/product/save', {
         body: obj,
@@ -30,6 +30,7 @@ function NewProduct() {
           authorization: token
         },
       });
+      navigate('/home');
     } catch (error) {
       alert(error);
     }

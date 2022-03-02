@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { Routes } from 'react-router';
 import './App.css';
 import Provider from './context/Provider';
-import { Login, Home, NewProduct } from './pages/index';
+import { Login, Home, NewProduct, EditProduct } from './pages/index';
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
         <Route exact path='/' element={ <Login /> } />
         <Route exact path='/home' element={ <Home /> } />
         <Route exact path='/product/new' element={ <NewProduct />} />
+        <Route exact path='/product/edit/:id' element={ < EditProduct />} />
       </Routes>
     </Provider>
   );
