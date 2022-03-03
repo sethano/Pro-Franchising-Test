@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
+import '../css/IngredientForm.css';
 
 function IngredientForm() {
   const {
@@ -24,10 +25,12 @@ function IngredientForm() {
   };
 
   return(
-    <div>
-      INGREDIENTS: 
+    <div className='IngredientForm'>
+      INGREDIENTS:
+      <br />
       <label htmlFor='ingredientName'>
         NAME: 
+        <br />
         <input 
           type='text'
           name='ingredientName'
@@ -35,8 +38,10 @@ function IngredientForm() {
           onChange={(input) => setIngredientName(input.target.value)}
         />
       </label>
+      <br />
       <label htmlFor='ingredientCost'>
         COST: 
+        <br />
         <input 
           type='number'
           name='ingredientCost'
@@ -45,8 +50,10 @@ function IngredientForm() {
           onChange={(input) => setIngredientCost(input.target.value)}
         />
       </label>
+      <br />
       <label htmlFor='ingredientQuantity'>
         QUANTITY: 
+        <br />
         <input 
           type='number'
           name='ingredientQuantity'
@@ -54,6 +61,7 @@ function IngredientForm() {
           onChange={(input) => setIngredientQuantity(input.target.value)}
         />
       </label>
+      <br />
       <button
         type='button'
         onClick={(event) => handleClickIngredients(event) }

@@ -41,7 +41,7 @@ function EditProduct() {
   }, [ingredients]);
 
   return (
-    <div>
+    <div className='ProductForm'>
       <ProductForm />
       <IngredientForm />
       <span hidden={message} > Ingredient Add! </span>

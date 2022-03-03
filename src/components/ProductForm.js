@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
+import '../css/ProductForm.css';
 
 function ProductForm() {
   const {
@@ -11,7 +12,8 @@ function ProductForm() {
   return(
     <form>
       <label htmlFor='name'>
-        NAME: 
+        NAME:
+        <br />
         <input
           type='text'
           name='name'
@@ -21,6 +23,7 @@ function ProductForm() {
       </label>
       <label htmlFor='price'>
         PRICE:
+        <br />
         <input 
           type='number'
           name='price'
@@ -31,6 +34,7 @@ function ProductForm() {
       </label>
       <label htmlFor='image'>
         IMAGE (url):
+        <br />
         <input 
           type='text'
           name='image'

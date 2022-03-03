@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import apiRequest from '../utils/axiosapi';
 import axios from 'axios';
+import '../css/Login.css';
 
 
 function Login() {
@@ -40,6 +41,7 @@ function Login() {
         <input
           type='text'
           name='email'
+          className='email input'
           placeholder='EMAIL'
           value={email}
           onChange={(input) => setEmail(input.target.value)}
@@ -47,6 +49,7 @@ function Login() {
         <input
           type='password'
           name='password'
+          className='password input'
           placeholder='PASSWORD'
           value={password}
           onChange={(input) => setPassword(input.target.value)}

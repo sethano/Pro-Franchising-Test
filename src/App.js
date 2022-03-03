@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { Routes } from 'react-router';
-import './App.css';
+import '../src/css/App.css';
 import Provider from './context/Provider';
 import { Login, Home, NewProduct, EditProduct } from './pages/index';
 
