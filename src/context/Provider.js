@@ -3,7 +3,6 @@ import propTypes from 'prop-types';
 import Context from './Context';
 
 function Provider({ children }) {
-  const [ authorization, setAuthorization ] = useState();
   const [ name, setName ] = useState('');
   const [ price, setPrice ] = useState(0);
   const [ image, setImage ] = useState('');
@@ -11,16 +10,17 @@ function Provider({ children }) {
   const [ ingredientCost, setIngredientCost ] = useState(0);
   const [ ingredientQuantity, setIngredientQuantity ] = useState(0);
   const [ ingredients, setIngredients ] = useState([]);
+  const [ productList, setProductList ] = useState();
 
   const providerValue = {
-    authorization, setAuthorization,
     name, setName,
     price, setPrice,
     image, setImage,
     ingredientName, setIngredientName,
     ingredientCost, setIngredientCost,
     ingredientQuantity, setIngredientQuantity,
-    ingredients, setIngredients
+    ingredients, setIngredients,
+    productList, setProductList,
   };
 
   return (

@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import Context from '../context/Context';
 import apiRequest from '../utils/axiosapi';
+import axios from 'axios';
 
 
 function Login() {
@@ -9,10 +9,6 @@ function Login() {
   const [ password, setPassword ] = useState('958a2198-ed46-44bc-b05d-0f66691489f0');
   const navigate = useNavigate();
   const [ login, setLogin ] = useState(false);
-  const { 
-    authorization,
-    setAuthorization,
-  } = useContext(Context);
 
   const handleClick = async (event) => {
     event.preventDefault;
@@ -24,7 +20,7 @@ function Login() {
       apiRequest.post('/auth/login', auth)
         .then((res) => {
           localStorage.setItem('token', JSON.stringify(res.headers.authorization));
-          setAuthorization(res.headers.authorization);
+          axios.defaults.headers.common.authorization = res.headers.authorization;
         });
       setLogin(!login);
     } catch (error) {
@@ -33,10 +29,10 @@ function Login() {
   };
 
   useEffect(() => {
-    if(authorization && login) {
+    if(login) {
       navigate('/home');
     }
-  },[authorization]);
+  },[login]);
 
   return (
     <div>

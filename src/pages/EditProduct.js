@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IngredientForm, ProductForm } from '../components';
 import Context from '../context/Context';
 import { useLocation, useNavigate } from 'react-router';
 import apiRequest from '../utils/axiosapi';
 
 function EditProduct() {
+  const [ message, setMessage ] = useState(false);
   const {
     image, name, ingredients, price
   } = useContext(Context);
@@ -21,23 +22,29 @@ function EditProduct() {
       price: price,
     };
     const token = JSON.parse(localStorage.getItem('token'));
+    const headers = {
+      authorization: token,
+    };
     try {
-      await apiRequest.post('/product/save', {
-        body: obj,
-        headers: {
-          authorization: token
-        },
-      });
+      await apiRequest.post('/product/save', obj, { headers });
       navigate('/home');
     } catch (error) {
       alert(error);
     }
   };
 
+  useEffect(() => {
+    setMessage(!message);
+    setTimeout(() => {
+      setMessage(true);
+    }, 3000);
+  }, [ingredients]);
+
   return (
     <div>
       <ProductForm />
       <IngredientForm />
+      <span hidden={message} > Ingredient Add! </span>
       <button
         type='button'
         onClick={(event) => handleClickNew(event) }

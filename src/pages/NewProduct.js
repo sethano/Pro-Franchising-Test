@@ -23,13 +23,11 @@ function NewProduct() {
       price: price,
     };
     const token = JSON.parse(localStorage.getItem('token'));
+    const headers = {
+      authorization: token,
+    };
     try {
-      await apiRequest.post('/product/save', {
-        body: obj,
-        headers: {
-          authorization: token
-        },
-      });
+      await apiRequest.post('/product/save', obj, { headers });
       navigate('/home');
     } catch (error) {
       alert(error);
@@ -47,7 +45,7 @@ function NewProduct() {
     <div>
       <ProductForm />
       <IngredientForm />
-      <span hidden={message} > Product Add! </span>
+      <span hidden={message} > Ingredient Add! </span>
       <button
         type='button'
         onClick={(event) => handleClickNew(event) }
